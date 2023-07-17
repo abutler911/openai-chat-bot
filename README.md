@@ -31,7 +31,7 @@ The project is created with:
 
 To run this project, you'll need Node.js and npm installed on your system.
 
-1. Clone the repository: `git clone https://github.com/<username>/sassysage.git`
+1. Clone the repository: `git clone https://github.com/abutler911/sassysage.git`
 2. Move into the project directory: `cd sassysage`
 3. Install the dependencies: `npm install`
 4. Start the server: `npm start`
