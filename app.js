@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 let chatHistory = [];
 
 const configuration = new Configuration({
