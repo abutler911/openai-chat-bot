@@ -24,7 +24,7 @@ app.use("/", chatRoutes);
 // Start the server
 app.listen(port, async () => {
   try {
-    console.log(`App listening on port ${port}`);
+    console.log(`Server listening on port ${port}`);
   } catch (error) {
     console.error(`Error occurred: ${error.message}`);
   }
