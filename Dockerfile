@@ -27,4 +27,4 @@ COPY . .
 EXPOSE 80
 
 # Define the command to run your app using CMD which defines your runtime
-CMD [ "node", "app.js" ]
+CMD [ "npm", "start" ]
