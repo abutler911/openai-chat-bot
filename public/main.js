@@ -1,45 +1,47 @@
-document
-  .getElementById("message-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+document.getElementById("message-form").addEventListener("submit", sendMessage);
 
-    const userInput = document.getElementById("userInput").value;
+function sendMessage(event) {
+  event.preventDefault();
 
-    // Add the user message to the chat immediately after sending
-    const userMessage = document.createElement("p");
-    userMessage.textContent = "You: " + userInput;
-    userMessage.classList.add("user-prompt");
-    document.getElementById("chatHistory").appendChild(userMessage);
-    scrollToBottom("chatHistory");
+  const userInput = document.getElementById("userInput").value;
 
-    const request = new XMLHttpRequest();
-    request.open("POST", "/", true);
-    request.setRequestHeader("Content-Type", "application/json");
+  addMessage("You", userInput, "user-prompt");
+  fetchBotResponse(userInput);
 
-    request.onload = function () {
-      if (request.status >= 200 && request.status < 400) {
-        const response = JSON.parse(request.responseText);
+  document.getElementById("userInput").value = "";
+}
 
-        // Add the bot message to the chat when response comes from server
-        const botMessage = document.createElement("p");
-        botMessage.textContent = "Bot: " + response.botResponse;
-        botMessage.classList.add("bot-prompt");
-        document.getElementById("chatHistory").appendChild(botMessage);
-        setTimeout(function () {
-          scrollToBottom("chatHistory");
-        }, 500);
-      }
-    };
+async function fetchBotResponse(userInput) {
+  try {
+    const response = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userInput }),
+    });
 
-    request.send(JSON.stringify({ userInput: userInput }));
+    if (response.ok) {
+      const { botResponse } = await response.json();
+      addMessage("Bot", botResponse, "bot-prompt");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
-    // Clear the input field
-    document.getElementById("userInput").value = "";
-  });
+function addMessage(speaker, text, className) {
+  const message = document.createElement("p");
+  message.textContent = `${speaker}: ${text}`;
+  message.classList.add(className);
+
+  const chatHistory = document.getElementById("chatHistory");
+  chatHistory.appendChild(message);
+
+  setTimeout(() => scrollToBottom("chatHistory"), 500);
+}
 
 function scrollToBottom(id) {
-  var div = document.getElementById(id);
-  setTimeout(() => {
-    div.scrollTop = div.scrollHeight;
-  }, 0);
+  const div = document.getElementById(id);
+  div.scrollTop = div.scrollHeight;
 }

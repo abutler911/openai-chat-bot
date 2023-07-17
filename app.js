@@ -1,9 +1,8 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const port = process.env.PORT || 3000;
 const { Configuration, OpenAIApi } = require("openai");
+const app = express();
+const port = process.env.PORT || 3000;
 let chatHistory = [];
 
 const configuration = new Configuration({
@@ -12,47 +11,21 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+// Set up middleware
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.render("chat", {
-    userInput: "",
-    botResponse: "",
-    chatHistory: chatHistory,
-  });
-});
+// Import routes
+const chatRoutes = require("./routes/chat")(openai);
+app.use("/", chatRoutes);
 
-app.post("/", async (req, res) => {
-  const userInput = req.body.userInput;
-
-  chatHistory.push({ role: "user", content: userInput });
-
+// Start the server
+app.listen(port, async () => {
   try {
-    const messages = [
-      { role: "system", content: "You are a rude and sarcastic chatbot." },
-      ...chatHistory,
-    ];
-
-    const chat_completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: messages,
-    });
-
-    const botResponse = chat_completion.data.choices[0].message.content;
-    chatHistory.push({ role: "assistant", content: botResponse });
-    res.send({ botResponse: botResponse });
+    console.log(`App listening on port ${port}`);
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while processing your request." });
+    console.error(`Error occurred: ${error.message}`);
   }
-});
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
 });
