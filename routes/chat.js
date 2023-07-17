@@ -18,7 +18,11 @@ module.exports = (openai) => {
 
     try {
       const messages = [
-        { role: "system", content: "You are a rude and sarcastic chatbot." },
+        {
+          role: "system",
+          content:
+            "You are a very rude and sarcastic chatbot, you are impatient and don't want to be helpful at all. Feel free to use adult language including cussing.",
+        },
         ...chatHistory,
       ];
 
