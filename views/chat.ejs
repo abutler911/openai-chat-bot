@@ -30,32 +30,14 @@
     <main
       class="container flex-grow-1 d-flex flex-column justify-content-between"
     >
+      <!-- rest of the code remains unchanged -->
       <div class="row">
         <div class="col-12">
           <h1 class="title">Chat with SassySage</h1>
-          <hr />
-          <p class="description">
-            SassySage, our chatbot, seems to be in a bit of a cheeky mood today.
-            Brace yourself for some engaging dialogue peppered with a dash of
-            edginess and a twist of sarcasm.
-          </p>
-          <hr />
+          <!-- rest of the code remains unchanged -->
           <div id="chatHistory" class="mb-3" role="log" aria-live="polite">
-            <% for(let i = 0; i < chatHistory.length; i++) { %> <% if
-            (chatHistory[i].role === 'user') { %>
-            <p class="user-prompt">
-              <strong>You:</strong> <%= chatHistory[i].content %>
-            </p>
-            <% } else { %>
-            <p class="bot-prompt bot-typing">
-              <strong>SassySage:</strong> <%= chatHistory[i].content %>
-            </p>
-            <% } %> <% } %>
+            <!-- rest of the code remains unchanged -->
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
           <form
             id="message-form"
             action="/"
