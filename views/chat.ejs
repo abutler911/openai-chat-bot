@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body class="d-flex flex-column vh-100">
+    <div
+      class="container flex-grow-1 d-flex flex-column justify-content-between"
+    >
+      <div class="row">
+        <div class="col-12">
+          <h1 class="title">Chat with SassySage</h1>
+          <hr />
+          <p class="description">
+            SassySage, our chatbot, seems to be in a bit of a cheeky mood today.
+            Brace yourself for some engaging dialogue peppered with a dash of
+            edginess and a twist of sarcasm.
+          </p>
+          <hr />
+          <div id="chatHistory" class="mb-3">
+            <% for(let i = 0; i < chatHistory.length; i++) { %> <% if
+            (chatHistory[i].role === 'user') { %>
+            <p class="user-prompt">
+              <strong>You:</strong> <%= chatHistory[i].content %>
+            </p>
+            <% } else { %>
+            <p class="bot-prompt bot-typing">
+              <strong>Bot:</strong> <%= chatHistory[i].content %>
+            </p>
+            <% } %> <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form
+            id="message-form"
+            action="/"
+            method="POST"
+            class="mb-3"
+            autocomplete="off"
+          >
+            <input
+              id="userInput"
+              type="text"
+              name="userInput"
+              required
+              class="form-control"
+              placeholder="Type a message..."
+            />
+            <button type="submit" class="btn mt-2">Chat!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
