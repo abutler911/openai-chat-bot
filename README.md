@@ -1,6 +1,6 @@
-# SassySage - AI Chatbot
+# BitterBetty - AI Chatbot
 
-SassySage, an AI Chatbot, is a conversational bot, powered by GPT-4 developed by OpenAI. It can engage in human-like text conversation, accept natural language inputs and provide text-based responses.
+BitterBetty, an AI Chatbot, is a conversational bot, powered by GPT-4 developed by OpenAI. It can engage in human-like text conversation, accept natural language inputs and provide text-based responses.
 
 ## Table of contents
 
@@ -31,8 +31,8 @@ The project is created with:
 
 To run this project, you'll need Node.js and npm installed on your system.
 
-1. Clone the repository: `git clone https://github.com/abutler911/sassysage.git`
-2. Move into the project directory: `cd sassysage`
+1. Clone the repository: `git clone https://github.com/abutler911/openai-chat-bot.git`
+2. Move into the project directory: `cd openai-chat-bot`
 3. Install the dependencies: `npm install`
 4. Start the server: `npm start`
 5. Open your browser and navigate to `http://localhost:3000` to access the application.

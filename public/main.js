@@ -29,7 +29,7 @@ async function fetchBotResponse(userInput) {
 
     if (response.ok) {
       const { botResponse } = await response.json();
-      addMessage("SassySage", botResponse, "bot-prompt");
+      addMessage("BitterBetty", botResponse, "bot-prompt");
     }
   } catch (error) {
     console.error("Error:", error);
