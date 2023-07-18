@@ -14,7 +14,7 @@ SassySage, an AI Chatbot, is a conversational bot, powered by GPT-4 developed by
 
 ## General info
 
-This project is a simple demonstration of OpenAI's language model GPT-4 capabilities in a chat format. The bot can answer a variety of questions, from general knowledge inquiries to complex problems.
+This project is a simple demonstration of OpenAI's language model GPT-4 capabilities in a chat format. The bot can answer a variety of questions, from general knowledge inquiries to complex problems. It's personality is currently programmed to be very rude and sarcastic and use adult language so PLEASE BE AWARE OF THAT IF YOU ARE OFFENDED BY ADULT LANGUAGE.
 
 ## Technologies
 
