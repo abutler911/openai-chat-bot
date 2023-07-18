@@ -56,16 +56,7 @@
           <hr />
 
           <div id="chatHistory" class="mb-3" role="log" aria-live="polite">
-            <% for(let i = 0; i < chatHistory.length; i++) { %> <% if
-            (chatHistory[i].role === 'user') { %>
-            <p class="user-prompt">
-              <strong>You:</strong> <%= chatHistory[i].content %>
-            </p>
-            <% } else { %>
-            <p class="bot-prompt bot-typing">
-              <strong>SassySage:</strong> <%= chatHistory[i].content %>
-            </p>
-            <% } %> <% } %>
+            <!-- Chat history will be appended here by the client-side script -->
           </div>
         </div>
       </div>

@@ -1,5 +1,11 @@
 document.getElementById("message-form").addEventListener("submit", sendMessage);
 
+const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+
+chatHistory.forEach(({ speaker, text, className }) => {
+  addMessage(speaker, text, className);
+});
+
 function sendMessage(event) {
   event.preventDefault();
 
@@ -35,8 +41,11 @@ function addMessage(speaker, text, className) {
   message.textContent = `${speaker}: ${text}`;
   message.classList.add(className);
 
-  const chatHistory = document.getElementById("chatHistory");
-  chatHistory.appendChild(message);
+  const chatHistoryElement = document.getElementById("chatHistory");
+  chatHistoryElement.appendChild(message);
+
+  chatHistory.push({ speaker, text, className });
+  localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
 
   setTimeout(() => scrollToBottom("chatHistory"), 500);
 }
