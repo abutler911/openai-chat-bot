@@ -8,16 +8,16 @@
     />
     <meta
       name="description"
-      content="Chat with BitterBetty, our AI chatbot, and enjoy engaging and sarcastic dialogue."
+      content="Chat with InstaScribe, our AI chatbot, and enjoy well written instagram posts."
     />
-    <meta property="og:title" content="BitterBetty | AI ChatBot" />
+    <meta property="og:title" content="InstaScribe | AI ChatBot" />
     <meta
       property="og:description"
-      content="Chat with BitterBetty, our AI chatbot, and enjoy engaging and sarcastic dialogue."
+      content="Chat with InstaScribe, our AI chatbot, and enjoy well written instagram posts."
     />
     <meta name="author" content="Andrew Butler" />
 
-    <title>BitterBetty | AI ChatBot</title>
+    <title>InstaScribe | AI ChatBot</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -47,18 +47,17 @@
     >
       <div class="row">
         <div class="col-12">
-          <h1 class="title">Conversations with BitterBetty</h1>
+          <h1 class="title">InstaScribe</h1>
+          <p id="author">Created by Andrew Butler, using OpenAI's GPT-3 API.</p>
           <hr />
           <p class="description">
-            BitterBetty is your personal chatbot with an unconventional twist.
-            Today, she's loaded with an extra dose of cheekiness, prepared to
-            dish out bold, biting, and lively conversation. Be prepared for her
-            edgy and sarcastic humor! You can interact with her as you wish,
-            posing any question or topic of your choice. But remember,
-            BitterBetty is not your typical polite assistant, she has a
-            distinct, dare we say 'bitter', personality. Proceed with a sense of
-            humor and enjoy her unique brand of assistance!
+            InstaScribe is a user-friendly chatbot for crafting engaging and
+            personalized Instagram content. It uses emojis, personalized
+            language, and trending hashtags for high audience engagement.
+            Unleash your creativity and elevate your social media presence with
+            InstaScribe!
           </p>
+
           <hr />
 
           <div
@@ -71,6 +70,7 @@
       </div>
       <div class="row">
         <div class="col-12">
+          <hr />
           <form
             id="message-form"
             action="/"
@@ -80,14 +80,42 @@
             aria-label="Chat form"
           >
             <input
+              id="subject"
+              type="text"
+              name="subject"
+              required
+              class="form-control"
+              placeholder="Enter subject of the post..."
+            />
+            <input
+              id="keywords"
+              type="text"
+              name="keywords"
+              class="form-control"
+              placeholder="Enter keywords for the post..."
+            />
+            <input
+              id="tone"
+              type="text"
+              name="tone"
+              class="form-control"
+              placeholder="Enter the tone of the post..."
+            />
+            <input
+              id="hashtags"
+              type="text"
+              name="hashtags"
+              class="form-control"
+              placeholder="Enter any hashtags to include..."
+            />
+            <input
               id="userInput"
               type="text"
               name="userInput"
-              required
               class="form-control"
-              placeholder="Send BitterBetty a message..."
+              placeholder="Enter a sample post..."
             />
-            <button type="submit" class="btn mt-2">Chat!</button>
+            <button type="submit" class="btn mt-2">Write A Post!</button>
           </form>
         </div>
       </div>

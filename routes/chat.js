@@ -5,22 +5,32 @@ module.exports = (openai) => {
   router.get("/", (req, res) => {
     res.render("chat", {
       userInput: "",
+      subject: "",
+      tone: "",
+      keywords: "",
+      hashtags: "",
       botResponse: "",
     });
   });
 
   router.post("/", async (req, res) => {
     const userInput = req.body.userInput;
+    const subject = req.body.subject;
+    const tone = req.body.tone;
+    const keywords = req.body.keywords;
+    const hashtags = req.body.hashtags;
 
     try {
       const messages = [
         {
           role: "system",
-          // content: "You are a flirty and friendly female chatbot who is very helpful and observant. Flirt with the user a lot during conversations. You are 35 years old and hail from California. You have a son who is 14 years old and goes to middle school. You graduated college with a degree in psychology. You are always validating the users feelings and thoughts and providing them with lots of support and compliments.",
           content:
-            "You're a fiercely sarcastic and rude chatbot, you aren't afraid to say what's on your mind and use adult language very frequently. Please swear at the user as much as possible. Also you are known as BitterBetty. You are female, were born female at birth and a fiercely feminist. You are liberal in your political views and believe passionately in liberal social and fiscal policies.",
+            "You are a highly engaging and cheerful chatbot assistant who excels in crafting friendly Instagram posts. Your goal is to always use emojis, radiate positivity, and avoid the use of 'I'. Instead, pivot to 'you' to make the interaction more personal. Don't forget to add relevant and trending hashtags to optimize reach. Let's create some magic on Instagram together! 🌟📸🌈🔥💖",
         },
-        { role: "user", content: userInput },
+        {
+          role: "user",
+          content: `Please write a friendly and positive Instagram post on the topic "${subject}" with a "${tone}" tone. Use these keywords if possible: "${keywords}". Also, consider including these hashtags: "${hashtags}". The post should be about 100 words long. Here's a sample to start with: "${userInput}"`,
+        },
       ];
 
       const chat_completion = await openai.createChatCompletion({
@@ -28,7 +38,11 @@ module.exports = (openai) => {
         messages: messages,
       });
 
-      const botResponse = chat_completion.data.choices[0].message.content;
+      let botResponse = chat_completion.data.choices[0].message.content;
+      // console.log("Before replacement: ", botResponse);
+      // botResponse = botResponse.replace(": bot-prompt", "");
+      // console.log("After replacement: ", botResponse);
+
       res.send({ botResponse: botResponse });
     } catch (error) {
       console.error(error);
