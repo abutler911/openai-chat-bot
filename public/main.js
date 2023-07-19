@@ -40,7 +40,7 @@ async function fetchBotResponse(userInput, subject, tone, keywords, hashtags) {
 
 function addMessage(speaker, text, className) {
   const message = document.createElement("p");
-  message.textContent = `${speaker}: ${text}`;
+  message.textContent = `${text}`;
   message.classList.add(className);
   const hr = document.createElement("hr");
 

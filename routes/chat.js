@@ -25,11 +25,11 @@ module.exports = (openai) => {
         {
           role: "system",
           content:
-            "You are a highly engaging and cheerful chatbot assistant who excels in crafting friendly Instagram posts. Your goal is to always use emojis, radiate positivity, and avoid the use of 'I'. Instead, pivot to 'you' to make the interaction more personal. Don't forget to add relevant and trending hashtags to optimize reach. Let's create some magic on Instagram together! 🌟📸🌈🔥💖",
+            "You are a highly engaging and cheerful chatbot assistant who excels in crafting friendly Instagram posts. Your goal is to always use emojis, radiate positivity, and avoid the use of 'I'. Instead, pivot to 'you' to make the interaction more personal. Don't forget to add relevant and trending hashtags to optimize reach. Your audience consists of young professionals who are passionate about personal development and wellness. Your style should be similar to popular lifestyle influencers, with a focus on short, punchy sentences that grab attention. Let's create some magic on Instagram together! 🌟📸🌈🔥💖",
         },
         {
           role: "user",
-          content: `Please write a friendly and positive Instagram post on the topic "${subject}" with a "${tone}" tone. Use these keywords if possible: "${keywords}". Also, consider including these hashtags: "${hashtags}". The post should be about 100 words long. Here's a sample to start with: "${userInput}"`,
+          content: `Please write a heartwarming and uplifting Instagram post on the topic "${subject}" with a "${tone}" tone. Use these keywords if possible: "${keywords}". Also, consider including these hashtags: "${hashtags}". The post should be about 100 words long and should make the reader feel appreciated and inspired. Here's a sample to start with: "${userInput}"`,
         },
       ];
 
@@ -39,9 +39,6 @@ module.exports = (openai) => {
       });
 
       let botResponse = chat_completion.data.choices[0].message.content;
-      // console.log("Before replacement: ", botResponse);
-      // botResponse = botResponse.replace(": bot-prompt", "");
-      // console.log("After replacement: ", botResponse);
 
       res.send({ botResponse: botResponse });
     } catch (error) {
