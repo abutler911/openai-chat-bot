@@ -94,7 +94,7 @@ body {
 .bot-prompt {
   grid-column: 1 / -1;
   /* justify-self: end; */
-  background-color: #6d9eeb;
+  background-color: #d1edea;
   position: relative;
   padding: 10px;
   border-radius: 10px;
