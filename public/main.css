@@ -93,6 +93,7 @@ body {
 
 .bot-prompt {
   grid-column: 1 / -1;
+  color: #000;
   /* justify-self: end; */
   background-color: #d1edea;
   position: relative;
