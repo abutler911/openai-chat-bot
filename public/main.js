@@ -9,8 +9,17 @@ function sendMessage(event) {
   const keywords = document.getElementById("keywords").value;
   const hashtags = document.getElementById("hashtags").value;
 
-  fetchBotResponse(userInput, subject, tone, keywords, hashtags);
-  document.getElementById("chatHistory").style.display = "block";
+  console.log("Before showing spinner");
+  document.getElementById("loading").style.display = "flex";
+  console.log("After showing spinner");
+
+  setTimeout(() => {
+    fetchBotResponse(userInput, subject, tone, keywords, hashtags);
+    document.getElementById("chatHistory").style.display = "block";
+  }, 500);
+
+  // fetchBotResponse(userInput, subject, tone, keywords, hashtags);
+  // document.getElementById("chatHistory").style.display = "block";
 
   document.getElementById("userInput").value = "";
   document.getElementById("subject").value = "";
@@ -35,23 +44,27 @@ async function fetchBotResponse(userInput, subject, tone, keywords, hashtags) {
     }
   } catch (error) {
     console.error("Error:", error);
+  } finally {
+    console.log("Before hiding spinner");
+    document.getElementById("loading").style.display = "none";
+    console.log("After hiding spinner");
   }
-}
 
-function addMessage(speaker, text, className) {
-  const message = document.createElement("p");
-  message.textContent = `${text}`;
-  message.classList.add(className);
-  const hr = document.createElement("hr");
+  function addMessage(speaker, text, className) {
+    const message = document.createElement("p");
+    message.textContent = `${text}`;
+    message.classList.add(className);
+    const hr = document.createElement("hr");
 
-  const chatHistoryElement = document.getElementById("chatHistory");
-  chatHistoryElement.appendChild(message);
-  chatHistoryElement.appendChild(hr);
+    const chatHistoryElement = document.getElementById("chatHistory");
+    chatHistoryElement.appendChild(message);
+    chatHistoryElement.appendChild(hr);
 
-  setTimeout(() => scrollToBottom("chatHistory"), 500);
-}
+    setTimeout(() => scrollToBottom("chatHistory"), 500);
+  }
 
-function scrollToBottom(id) {
-  const div = document.getElementById(id);
-  div.scrollTop = div.scrollHeight;
+  function scrollToBottom(id) {
+    const div = document.getElementById(id);
+    div.scrollTop = div.scrollHeight;
+  }
 }
