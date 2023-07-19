@@ -47,6 +47,7 @@ async function fetchBotResponse(userInput, subject, tone, keywords, hashtags) {
   } finally {
     console.log("Before hiding spinner");
     document.getElementById("loading").style.display = "none";
+    document.getElementById("copy-instructions").style.display = "block";
     console.log("After hiding spinner");
   }
 
@@ -55,6 +56,18 @@ async function fetchBotResponse(userInput, subject, tone, keywords, hashtags) {
     message.textContent = `${text}`;
     message.classList.add(className);
     const hr = document.createElement("hr");
+
+    message.addEventListener("click", () => {
+      navigator.clipboard
+        .writeText(message.textContent)
+        .then(() => {
+          console.log("Text copied to clipboard");
+        })
+        .catch((err) => {
+          // This can happen if the user denies clipboard permissions:
+          console.error("Could not copy text: ", err);
+        });
+    });
 
     const chatHistoryElement = document.getElementById("chatHistory");
     chatHistoryElement.appendChild(message);
